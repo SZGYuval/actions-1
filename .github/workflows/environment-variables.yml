@@ -6,7 +6,7 @@ env:
     CONTAINER_REGISTRY: docker.io
     DOCKER_USERNAME: szgyuval123
     IMAGE_NAME: actions
-    
+
 jobs:
     build_image:
         runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
         - name: Docker login
           env:
             DOCKER_PASSWORD: Yuval200r
-          run: echo docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+          run: echo docker login --username $DOCKER_USERNAME --password ${{ secrets.DOCKER_PASSWORD }}
 
         - name: Docker publish
           run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
