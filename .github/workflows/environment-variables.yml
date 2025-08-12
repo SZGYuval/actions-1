@@ -1,10 +1,12 @@
 name: Exploring envirnment variables
 
 on: push
+
 env:
     CONTAINER_REGISTRY: docker.io
     DOCKER_USERNAME: szgyuval123
-  I MAGE_NAME: actions
+    IMAGE_NAME: actions
+    
 jobs:
     build_image:
         runs-on: ubuntu-latest
@@ -21,6 +23,7 @@ jobs:
           run: echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
             
     deploy:
+        needs: build_image
         runs-on: ubuntu-latest
         steps:
         - name: Docker run
